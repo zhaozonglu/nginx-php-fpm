@@ -1,8 +1,7 @@
 version: "3"
 services:
   php-app:
-    build: .
-    image: php-env:v0.1
+    image: zhaozonglu/nginx-php-fpm
     container_name: php-app
     volumes:
       - "./php_conf:/usr/local/etc"
