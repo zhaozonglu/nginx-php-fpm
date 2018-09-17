@@ -41,11 +41,14 @@ RUN cd /home/librdkafka && ./configure && make && make install \
  && cd /home/rdkafka && phpize && ./configure --with-php-config=php-config && make && make install \
  && cd /home/redis && phpize && ./configure --with-php-config=php-config && make && make install \
  && cd /home/swoole && phpize && ./configure --with-php-config=php-config && make && make install \
- && cd /home/mongodb && phpize && ./configure --with-php-config=php-config && make && make install
+ && cd /home/mongodb && phpize && ./configure --with-php-config=php-config && make && make install \
+
+RUN docker-php-ext-enable swoole \
+    && docker-php-ext-enable mongodb \
+    && docker-php-ext-enable redis \
+    && docker-php-ext-enable rdkafka \
 
 RUN rm -rf /home/*
-
-RUN docker-php-ext-enable swoole && docker-php-ext-enable mongodb
 
 WORKDIR /data
 RUN usermod -u 1000 www-data
