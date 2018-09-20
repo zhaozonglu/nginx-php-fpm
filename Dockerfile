@@ -22,6 +22,7 @@ RUN apt-get update && apt-get install -y \
         && docker-php-ext-install sockets \
         && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
         && docker-php-ext-install ldap \
+        && docker-php-ext-install pcntl \
         && rm -r /var/lib/apt/lists/*
 
 RUN wget http://pecl.php.net/get/redis-4.0.0.tgz -O /home/redis.tgz \
