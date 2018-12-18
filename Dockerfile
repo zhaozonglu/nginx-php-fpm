@@ -60,9 +60,9 @@ RUN wget https://github.com/protocolbuffers/protobuf/releases/download/v3.6.1/pr
     && mkdir /home/protobuf-php && tar -zxvf /home/protobuf-php-3.6.1.tar.gz -C /home/protobuf-php --strip-components 1 \
     && cd /home/protobuf-php && ./configure && make && make install \
     && cd /home/protobuf-php/php/ext/google/protobuf && phpize && ./configure --with-php-config=php-config && make && make install \
-    && docker-php-ext-enable protobuf
-    && touch /etc/ld.so.conf.d/libprotobuf.conf
-    && echo /usr/local/lib > /etc/ld.so.conf.d/libprotobuf.conf
+    && docker-php-ext-enable protobuf \
+    && touch /etc/ld.so.conf.d/libprotobuf.conf \
+    && echo /usr/local/lib > /etc/ld.so.conf.d/libprotobuf.conf \
     && ldconfig
 
 RUN rm -rf /home/*
