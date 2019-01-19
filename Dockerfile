@@ -1,4 +1,4 @@
-FROM php:7.0.32-fpm
+FROM php:7.3-fpm
 
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
