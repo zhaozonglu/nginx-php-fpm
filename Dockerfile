@@ -1,9 +1,9 @@
-FROM php:7.2.8-fpm
+FROM php:7.3-fpm
 
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y \
         apt-utils \
         git \
         vim \
@@ -27,11 +27,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         && docker-php-ext-install pcntl \
         && rm -r /var/lib/apt/lists/*
 
-RUN wget http://pecl.php.net/get/redis-4.0.0.tgz -O /home/redis.tgz \
-	&& wget https://github.com/edenhill/librdkafka/archive/v0.11.5.tar.gz -O /home/librdkafka-0.11.5.tar.gz \
+RUN wget http://pecl.php.net/get/redis-4.2.0.tgz -O /home/redis.tgz \
+	&& wget https://github.com/edenhill/librdkafka/archive/v0.11.6.tar.gz -O /home/librdkafka-0.11.5.tar.gz \
 	&& wget https://github.com/arnaud-lb/php-rdkafka/archive/3.0.5.tar.gz -O /home/rdkafka-3.0.5.tgz \
-    && wget https://github.com/swoole/swoole-src/archive/v4.0.4.tar.gz -O /home/swoole.tar.gz \
-    && wget https://github.com/laruence/yaf/archive/yaf-3.0.7.tar.gz -O /home/yaf.tar.gz \
+    && wget https://github.com/swoole/swoole-src/archive/v4.2.12.tar.gz -O /home/swoole.tar.gz \
+    && wget https://github.com/laruence/yaf/archive/yaf-3.0.8.tar.gz -O /home/yaf.tar.gz \
     && wget https://github.com/mongodb/mongo-php-driver/releases/download/1.5.2/mongodb-1.5.2.tgz -O /home/mongodb.tgz
 
 RUN mkdir /home/rdkafka && tar -zxvf /home/rdkafka-3.0.5.tgz -C /home/rdkafka --strip-components 1 \
