@@ -1,4 +1,4 @@
-FROM php:7.3-fpm
+FROM php:7.2.8-fpm
 
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y \
 	    libssl-dev \
         libldap2-dev \
         libzip-dev \
+        libzip \
 	&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/  \
 	&& docker-php-ext-install -j$(nproc) gd \
         && docker-php-ext-install zip \
@@ -54,9 +55,6 @@ RUN docker-php-ext-enable redis \
     && docker-php-ext-enable rdkafka \
     && docker-php-ext-enable yaf
 
-# 安装 Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
 # 安装protobuf扩展
 RUN wget https://github.com/protocolbuffers/protobuf/releases/download/v3.6.1/protobuf-php-3.6.1.tar.gz -O /home/protobuf-php-3.6.1.tar.gz \
     && mkdir /home/protobuf-php && tar -zxvf /home/protobuf-php-3.6.1.tar.gz -C /home/protobuf-php --strip-components 1 \
@@ -66,6 +64,9 @@ RUN wget https://github.com/protocolbuffers/protobuf/releases/download/v3.6.1/pr
     && touch /etc/ld.so.conf.d/libprotobuf.conf \
     && echo /usr/local/lib > /etc/ld.so.conf.d/libprotobuf.conf \
     && ldconfig
+
+# 安装 Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 RUN rm -rf /home/*
 
