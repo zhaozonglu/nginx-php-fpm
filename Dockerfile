@@ -34,9 +34,10 @@ RUN wget http://pecl.php.net/get/redis-4.2.0.tgz -O /home/redis.tgz \
     && wget https://github.com/swoole/swoole-src/archive/v4.2.12.tar.gz -O /home/swoole.tar.gz \
     && wget https://github.com/laruence/yaf/archive/yaf-3.0.8.tar.gz -O /home/yaf.tar.gz \
     && wget https://github.com/mongodb/mongo-php-driver/releases/download/1.5.2/mongodb-1.5.2.tgz -O /home/mongodb.tgz \
-        && wget https://github.com/jedisct1/libsodium-php/archive/1.0.7.tar.gz -O /home/libsodium-php.tar.gz \
+    && wget https://github.com/jedisct1/libsodium-php/archive/1.0.7.tar.gz -O /home/libsodium-php.tar.gz \
     && wget https://github.com/jedisct1/libsodium/releases/download/1.0.16/libsodium-1.0.16.tar.gz -O /home/libsodium.tar.gz \
-    && wget https://github.com/alanxz/rabbitmq-c/releases/download/v0.8.0/rabbitmq-c-0.8.0.tar.gz -O /home/rabbitmq-c.tar.gz
+    && wget https://github.com/alanxz/rabbitmq-c/releases/download/v0.8.0/rabbitmq-c-0.8.0.tar.gz -O /home/rabbitmq-c.tar.gz \
+    && wget https://pecl.php.net/get/amqp-1.9.4.tgz -O /home/amqp-1.9.4.tgz
 
 RUN mkdir /home/rdkafka && tar -zxvf /home/rdkafka-3.0.5.tgz -C /home/rdkafka --strip-components 1 \
     && mkdir /home/redis && tar -zxvf /home/redis.tgz -C /home/redis -C /home/redis --strip-components 1 \
