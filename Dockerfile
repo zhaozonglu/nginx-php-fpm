@@ -28,7 +28,7 @@ RUN apt-get update && apt-get install -y \
         && docker-php-ext-install bcmath \
         && rm -r /var/lib/apt/lists/*
 
-RUN wget http://pecl.php.net/get/redis-4.2.0.tgz -O /home/redis.tgz \
+RUN wget http://pecl.php.net/get/redis-4.0.0.tgz -O /home/redis.tgz \
     && wget https://pecl.php.net/get/amqp-1.9.0.tgz -O /home/amqp-1.9.0.tgz \
 	&& wget https://github.com/edenhill/librdkafka/archive/v0.11.5.tar.gz -O /home/librdkafka-0.11.5.tar.gz \
 	&& wget https://github.com/arnaud-lb/php-rdkafka/archive/3.0.5.tar.gz -O /home/rdkafka-3.0.5.tgz \
