@@ -30,7 +30,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN wget http://pecl.php.net/get/redis-4.2.0.tgz -O /home/redis.tgz \
     && wget https://pecl.php.net/get/amqp-1.9.0.tgz -O /home/amqp-1.9.0.tgz \
-	&& wget https://github.com/edenhill/librdkafka/archive/v0.11.6.tar.gz -O /home/librdkafka-0.11.5.tar.gz \
+	&& wget https://github.com/edenhill/librdkafka/archive/v0.11.5.tar.gz -O /home/librdkafka-0.11.5.tar.gz \
 	&& wget https://github.com/arnaud-lb/php-rdkafka/archive/3.0.5.tar.gz -O /home/rdkafka-3.0.5.tgz \
     && wget https://github.com/jedisct1/libsodium-php/archive/2.0.20.tar.gz -O /home/libsodium-php.tar.gz \
     && wget https://github.com/jedisct1/libsodium/archive/1.0.16.tar.gz -O /home/libsodium.tar.gz \
@@ -58,16 +58,6 @@ RUN docker-php-ext-enable redis \
     && docker-php-ext-enable rdkafka \
     && docker-php-ext-enable libsodium \
     && docker-php-ext-enable amqp
-
-# 安装protobuf扩展
-RUN wget https://github.com/protocolbuffers/protobuf/releases/download/v3.6.1/protobuf-php-3.6.1.tar.gz -O /home/protobuf-php-3.6.1.tar.gz \
-    && mkdir /home/protobuf-php && tar -zxvf /home/protobuf-php-3.6.1.tar.gz -C /home/protobuf-php --strip-components 1 \
-    && cd /home/protobuf-php && ./configure && make && make install \
-    && cd /home/protobuf-php/php/ext/google/protobuf && phpize && ./configure --with-php-config=php-config && make && make install \
-    && docker-php-ext-enable protobuf \
-    && touch /etc/ld.so.conf.d/libprotobuf.conf \
-    && echo /usr/local/lib > /etc/ld.so.conf.d/libprotobuf.conf \
-    && ldconfig
 
 # 安装 Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
