@@ -29,7 +29,7 @@ RUN apt-get update && apt-get install -y \
         && rm -r /var/lib/apt/lists/*
 
 RUN wget http://pecl.php.net/get/redis-4.2.0.tgz -O /home/redis.tgz \
-    && wget https://pecl.php.net/get/amqp-1.9.4.tgz -O /home/amqp-1.9.4.tgz \
+    && wget https://pecl.php.net/get/amqp-1.9.0.tgz -O /home/amqp-1.9.0.tgz \
 	&& wget https://github.com/edenhill/librdkafka/archive/v0.11.6.tar.gz -O /home/librdkafka-0.11.5.tar.gz \
 	&& wget https://github.com/arnaud-lb/php-rdkafka/archive/3.0.5.tar.gz -O /home/rdkafka-3.0.5.tgz \
     && wget https://github.com/jedisct1/libsodium-php/archive/2.0.20.tar.gz -O /home/libsodium-php.tar.gz \
@@ -41,7 +41,7 @@ RUN mkdir /home/rdkafka && tar -zxvf /home/rdkafka-3.0.5.tgz -C /home/rdkafka --
     && mkdir /home/redis && tar -zxvf /home/redis.tgz -C /home/redis -C /home/redis --strip-components 1 \
     && mkdir /home/librdkafka && tar -zxvf /home/librdkafka-0.11.5.tar.gz -C /home/librdkafka --strip-components 1 \
     && mkdir /home/rabbitmq-c && tar -zxvf /home/rabbitmq-c.tar.gz -C /home/rabbitmq-c --strip-components 1 \
-    && mkdir /home/amqp && tar -zxvf /home/amqp-1.9.4.tgz -C /home/amqp --strip-components 1 \
+    && mkdir /home/amqp && tar -zxvf /home/amqp-1.9.0.tgz -C /home/amqp --strip-components 1 \
     && mkdir /home/libsodium-php && tar -zxvf /home/libsodium-php.tar.gz -C /home/libsodium-php --strip-components 1 \
     && mkdir /home/libsodium && tar -zxvf /home/libsodium.tar.gz -C /home/libsodium --strip-components 1
 
