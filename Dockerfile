@@ -37,7 +37,8 @@ RUN wget http://pecl.php.net/get/redis-4.2.0.tgz -O /home/redis.tgz \
     && wget https://github.com/jedisct1/libsodium-php/archive/1.0.7.tar.gz -O /home/libsodium-php.tar.gz \
     && wget https://github.com/jedisct1/libsodium/releases/download/1.0.16/libsodium-1.0.16.tar.gz -O /home/libsodium.tar.gz \
     && wget https://github.com/alanxz/rabbitmq-c/releases/download/v0.8.0/rabbitmq-c-0.8.0.tar.gz -O /home/rabbitmq-c.tar.gz \
-    && wget https://pecl.php.net/get/amqp-1.9.4.tgz -O /home/amqp-1.9.4.tgz
+    && wget https://pecl.php.net/get/amqp-1.9.4.tgz -O /home/amqp-1.9.4.tgz \
+    && wget http://pecl.php.net/get/apcu-5.1.16.tgz -O /home/apcu-5.1.16.tgz
 
 RUN mkdir /home/rdkafka && tar -zxvf /home/rdkafka-3.0.5.tgz -C /home/rdkafka --strip-components 1 \
     && mkdir /home/redis && tar -zxvf /home/redis.tgz -C /home/redis -C /home/redis --strip-components 1 \
@@ -48,7 +49,8 @@ RUN mkdir /home/rdkafka && tar -zxvf /home/rdkafka-3.0.5.tgz -C /home/rdkafka --
     && mkdir /home/rabbitmq-c && tar -zxvf /home/rabbitmq-c.tar.gz -C /home/rabbitmq-c --strip-components 1 \
     && mkdir /home/amqp && tar -zxvf /home/amqp-1.9.4.tgz -C /home/amqp --strip-components 1 \
     && mkdir /home/libsodium-php && tar -zxvf /home/libsodium-php.tar.gz -C /home/libsodium-php --strip-components 1 \
-    && mkdir /home/libsodium && tar -zxvf /home/libsodium.tar.gz -C /home/libsodium --strip-components 1
+    && mkdir /home/libsodium && tar -zxvf /home/libsodium.tar.gz -C /home/libsodium --strip-components 1 \
+    && mkdir /home/apcu && tar -zxvf /home/apcu-5.1.16.tgz -C /home/apcu --strip-components 1 
 
 RUN cd /home/librdkafka && ./configure && make && make install \
  && cd /home/rdkafka && phpize && ./configure --with-php-config=php-config && make && make install \
@@ -59,7 +61,8 @@ RUN cd /home/librdkafka && ./configure && make && make install \
  && cd /home/rabbitmq-c && ./configure --prefix=/usr/local/rabbitmq-c && make && make install \
  && cd /home/amqp && phpize && ./configure --with-php-config=php-config --with-amqp --with-librabbitmq-dir=/usr/local/rabbitmq-c && make && make install \
  && cd /home/libsodium && ./configure && make && make install \
- && cd /home/libsodium-php && phpize && ./configure --with-php-config=php-config && make && make install
+ && cd /home/libsodium-php && phpize && ./configure --with-php-config=php-config && make && make install \
+ && cd /home/apcu && phpize && ./configure --with-php-config=php-config && make && make install
 
 RUN docker-php-ext-enable redis \
     && docker-php-ext-enable swoole \
@@ -67,7 +70,8 @@ RUN docker-php-ext-enable redis \
     && docker-php-ext-enable rdkafka \
     && docker-php-ext-enable yaf \
     && docker-php-ext-enable libsodium \
-    && docker-php-ext-enable amqp
+    && docker-php-ext-enable amqp \
+    && docker-php-ext-enable apcu
 
 # 安装protobuf扩展
 RUN wget https://github.com/protocolbuffers/protobuf/releases/download/v3.6.1/protobuf-php-3.6.1.tar.gz -O /home/protobuf-php-3.6.1.tar.gz \
