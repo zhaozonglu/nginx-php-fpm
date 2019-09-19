@@ -9,6 +9,9 @@ RUN apt-get update && apt-get install -y \
         vim \
         curl \
         wget \
+        procps \
+        net-tools \
+        iputils-ping \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libpng-dev \
@@ -85,12 +88,6 @@ RUN wget https://github.com/protocolbuffers/protobuf/releases/download/v3.6.1/pr
 
 # 安装 Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-# 安装 常用工具
-RUN apt-get update && apt-get install -y \
-        procps \
-        net-tools \
-        iputils-ping \
 
 RUN rm -rf /home/*
 
