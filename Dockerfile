@@ -33,7 +33,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN    wget http://pecl.php.net/get/redis-5.3.1.tgz -O /home/redis.tgz \
     && wget http://pecl.php.net/get/amqp-1.10.2.tgz -O /home/amqp-1.10.2.tgz \
-    && wget http://pecl.php.net/get/apcu-5.1.18.tgz -O /home/apcu-5.1.18.tgz
+    && wget http://pecl.php.net/get/apcu-5.1.18.tgz -O /home/apcu-5.1.18.tgz \
 	&& wget https://github.com/edenhill/librdkafka/archive/v1.5.0.tar.gz -O /home/librdkafka-1.5.0.tar.gz \
 	&& wget https://github.com/arnaud-lb/php-rdkafka/archive/4.0.3.tar.gz -O /home/rdkafka-4.0.3.tgz \
     && wget https://github.com/swoole/swoole-src/archive/v4.5.2.tar.gz -O /home/swoole.tar.gz \
@@ -41,7 +41,7 @@ RUN    wget http://pecl.php.net/get/redis-5.3.1.tgz -O /home/redis.tgz \
     && wget https://github.com/mongodb/mongo-php-driver/releases/download/1.8.0/mongodb-1.8.0.tgz -O /home/mongodb.tgz \
     && wget https://github.com/jedisct1/libsodium-php/archive/2.0.22.tar.gz -O /home/libsodium-php.tar.gz \
     && wget https://github.com/jedisct1/libsodium/archive/1.0.18.tar.gz -O /home/libsodium.tar.gz \
-    && wget https://github.com/alanxz/rabbitmq-c/archive/v0.10.0.tar.gz -O /home/rabbitmq-c.tar.gz \
+    && wget https://github.com/alanxz/rabbitmq-c/archive/v0.10.0.tar.gz -O /home/rabbitmq-c.tar.gz
 
 RUN mkdir /home/rdkafka && tar -zxvf /home/rdkafka-4.0.3.tgz -C /home/rdkafka --strip-components 1 \
     && mkdir /home/redis && tar -zxvf /home/redis.tgz -C /home/redis -C /home/redis --strip-components 1 \
