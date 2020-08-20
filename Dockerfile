@@ -76,16 +76,6 @@ RUN docker-php-ext-enable redis \
     && docker-php-ext-enable apcu \
     && docker-php-ext-enable libsodium
 
-# 安装protobuf扩展
-RUN wget https://github.com/protocolbuffers/protobuf/releases/download/v3.13.0/protobuf-php-3.13.0.tar.gz -O /home/protobuf-php-3.13.0.tar.gz \
-    && mkdir /home/protobuf-php && tar -zxvf /home/protobuf-php-3.13.0.tar.gz -C /home/protobuf-php --strip-components 1 \
-    && cd /home/protobuf-php && ./configure && make && make install \
-    && cd /home/protobuf-php/php/ext/google/protobuf && phpize && ./configure --with-php-config=php-config && make && make install \
-    && docker-php-ext-enable protobuf \
-    && touch /etc/ld.so.conf.d/libprotobuf.conf \
-    && echo /usr/local/lib > /etc/ld.so.conf.d/libprotobuf.conf \
-    && ldconfig
-
 # 安装 Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
