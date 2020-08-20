@@ -40,7 +40,7 @@ RUN    wget http://pecl.php.net/get/redis-5.3.1.tgz -O /home/redis.tgz \
     && wget https://github.com/laruence/yaf/archive/yaf-3.2.5.tar.gz -O /home/yaf.tar.gz \
     && wget https://github.com/mongodb/mongo-php-driver/releases/download/1.8.0/mongodb-1.8.0.tgz -O /home/mongodb.tgz \
     && wget https://github.com/jedisct1/libsodium-php/archive/2.0.22.tar.gz -O /home/libsodium-php.tar.gz \
-    && wget https://github.com/jedisct1/libsodium/archive/1.0.18.tar.gz -O /home/libsodium.tar.gz \
+    && wget https://github.com/jedisct1/libsodium/releases/download/1.0.18-RELEASE/libsodium-1.0.18.tar.gz -O /home/libsodium.tar.gz \
     && wget https://github.com/alanxz/rabbitmq-c/releases/download/v0.8.0/rabbitmq-c-0.8.0.tar.gz -O /home/rabbitmq-c.tar.gz
 
 RUN mkdir /home/rdkafka && tar -zxvf /home/rdkafka-4.0.3.tgz -C /home/rdkafka --strip-components 1 \
