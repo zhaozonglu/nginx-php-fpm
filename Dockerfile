@@ -53,7 +53,7 @@ RUN    wget http://pecl.php.net/get/redis-5.3.1.tgz -O /home/redis.tgz \
     && mkdir /home/amqp && tar -zxvf /home/amqp-1.10.2.tgz -C /home/amqp --strip-components 1 \
     && mkdir /home/apcu && tar -zxvf /home/apcu-5.1.18.tgz -C /home/apcu --strip-components 1 \
     && mkdir /home/libsodium-php && tar -zxvf /home/libsodium-php.tar.gz -C /home/libsodium-php --strip-components 1 \
-    && mkdir /home/libsodium && tar -zxvf /home/libsodium.tar.gz -C /home/libsodium --strip-components 1
+    && mkdir /home/libsodium && tar -zxvf /home/libsodium.tar.gz -C /home/libsodium --strip-components 1 \
     && mkdir /home/protobuf-php && tar -zxvf /home/protobuf-php-3.13.0.tar.gz -C /home/protobuf-php --strip-components 1
 
 RUN cd /home/librdkafka && ./configure && make && make install \
