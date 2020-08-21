@@ -41,9 +41,9 @@ RUN    wget http://pecl.php.net/get/redis-5.3.1.tgz -O /home/redis.tgz \
     && wget https://github.com/mongodb/mongo-php-driver/releases/download/1.8.0/mongodb-1.8.0.tgz -O /home/mongodb.tgz \
     && wget https://github.com/alanxz/rabbitmq-c/releases/download/v0.8.0/rabbitmq-c-0.8.0.tar.gz -O /home/rabbitmq-c.tar.gz \
     && wget https://github.com/jedisct1/libsodium-php/archive/1.0.7.tar.gz -O /home/libsodium-php.tar.gz \
-    && wget https://github.com/jedisct1/libsodium/releases/download/1.0.16/libsodium-1.0.16.tar.gz -O /home/libsodium.tar.gz
-    
-RUN mkdir /home/rdkafka && tar -zxvf /home/rdkafka-4.0.3.tgz -C /home/rdkafka --strip-components 1 \
+    && wget https://github.com/jedisct1/libsodium/releases/download/1.0.16/libsodium-1.0.16.tar.gz -O /home/libsodium.tar.gz \
+    && wget https://github.com/protocolbuffers/protobuf/releases/download/v3.13.0/protobuf-php-3.13.0.tar.gz -O /home/protobuf-php-3.13.0.tar.gz \
+    && mkdir /home/rdkafka && tar -zxvf /home/rdkafka-4.0.3.tgz -C /home/rdkafka --strip-components 1 \
     && mkdir /home/redis && tar -zxvf /home/redis.tgz -C /home/redis -C /home/redis --strip-components 1 \
     && mkdir /home/swoole && tar -zxvf /home/swoole.tar.gz -C /home/redis -C /home/swoole --strip-components 1 \
     && mkdir /home/mongodb && tar -zxvf /home/mongodb.tgz -C /home/redis -C /home/mongodb --strip-components 1 \
@@ -54,6 +54,7 @@ RUN mkdir /home/rdkafka && tar -zxvf /home/rdkafka-4.0.3.tgz -C /home/rdkafka --
     && mkdir /home/apcu && tar -zxvf /home/apcu-5.1.18.tgz -C /home/apcu --strip-components 1 \
     && mkdir /home/libsodium-php && tar -zxvf /home/libsodium-php.tar.gz -C /home/libsodium-php --strip-components 1 \
     && mkdir /home/libsodium && tar -zxvf /home/libsodium.tar.gz -C /home/libsodium --strip-components 1
+    && mkdir /home/protobuf-php && tar -zxvf /home/protobuf-php-3.13.0.tar.gz -C /home/protobuf-php --strip-components 1
 
 RUN cd /home/librdkafka && ./configure && make && make install \
  && cd /home/rdkafka && phpize && ./configure --with-php-config=php-config && make && make install \
@@ -65,7 +66,8 @@ RUN cd /home/librdkafka && ./configure && make && make install \
  && cd /home/amqp && phpize && ./configure --with-php-config=php-config --with-amqp --with-librabbitmq-dir=/usr/local/rabbitmq-c && make && make install \
  && cd /home/apcu && phpize && ./configure --with-php-config=php-config && make && make install \
  && cd /home/libsodium && ./configure && make && make install \
- && cd /home/libsodium-php && phpize && ./configure --with-php-config=php-config && make && make install
+ && cd /home/libsodium-php && phpize && ./configure --with-php-config=php-config && make && make install \
+ && cd /home/protobuf-php && ./configure && make && make install 
  
 RUN docker-php-ext-enable redis \
     && docker-php-ext-enable swoole \
